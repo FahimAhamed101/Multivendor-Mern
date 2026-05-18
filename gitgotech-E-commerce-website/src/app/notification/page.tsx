@@ -1,0 +1,12 @@
+import NotificationsPage from '@/components/landingPage/Notification';
+import React from 'react';
+
+const page = () => {
+    return (
+        <div>
+           <NotificationsPage />
+        </div>
+    );
+};
+
+export default page;

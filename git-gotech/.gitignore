@@ -1,0 +1,50 @@
+# dependencies (bun install)
+node_modules
+
+# Firebase Config 
+src/config/firebase_admin_config_.json
+
+# Dist
+/dist
+
+# output
+out
+*.tgz
+
+# Winston
+winston
+
+# Public Folder
+public
+
+# code coverage
+coverage
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# Drawio
+.$Diagram.drawio.*
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
+.DS_Store
+
+.vercel

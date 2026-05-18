@@ -1,0 +1,38 @@
+name: CI/CD Deploy Backend
+
+on:
+  push:
+    branches:
+      - main  # triggers on push to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.20.1'  # match your VPS Node.js version
+
+      # Step 3: SSH deploy to VPS
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            export NVM_DIR="$HOME/.nvm"
+            source $NVM_DIR/nvm.sh
+
+            cd /project/backend                  # path to backend on VPS
+            git pull origin main                 # pull latest code
+            npm install                          # install dependencies
+            npm run build                        # compile TypeScript to JS
+            pm2 restart backend-app || pm2 start dist/index.js --name backend-app --interpreter node # pm2 save

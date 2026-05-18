@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/700.css";
+
+.font-cormorant {
+  font-family: "Cormorant Garamond", serif;
+}
+
+/* You can also add specific classes for different weights */
+.font-cormorant-regular {
+  font-weight: 400;
+}
+
+.font-cormorant-medium {
+  font-weight: 500;
+}
+
+.font-cormorant-semibold {
+  font-weight: 600;
+}
+
+.font-cormorant-bold {
+  font-weight: 700;
+}
+
+
+

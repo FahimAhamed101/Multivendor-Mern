@@ -1,0 +1,34 @@
+border shadow-[0_0_12px_rgba(34,211,238,0.35)] border-[#6100FF] rounded-2xl
+
+shadow-[0_0_12px_rgba(34,211,238,0.35)] border-purple-500/30
+
+bg color////////
+bg-gradient-to-r from-black via-[#0f0924] to-black
+
+text/////////
+bg-gradient-to-l from-blue-600 to-cyan-600 text-white ///text
+
+
+Back button//////
+      <!-- <div className="container mx-auto flex items-center gap-4">
+             <button onClick={()=> router.back()} className="flex items-center text-purple-400 hover:text-purple-300 transition-colors">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#B630F4] to-[#2ACCED] cursor-pointer flex items-center justify-center">
+            <FaArrowLeft className='text-black' />
+          </div>
+        </button>
+          <h1 className="text-[32px] font-semibold text-gray-300 font-cormorant">Wallet</h1>
+        </div> -->
+
+ discount button badge ///////////
+ 
+              <!-- 
+ <div className="absolute top-2 left-0 inline-flex items-center">  
+     <div className={styles.card}>
+      <div className={styles.discountBadge}>10% off</div>
+    </div> 
+   </div> 
+                {/* Best Seller Badge */}
+               <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-[#2388FF] text-white px-2 sm:px-3 py-1 md:py-2 rounded text-[10px] sm:text-xs font-semibold">
+                  {product.tag}
+                </div> 
+                -->
