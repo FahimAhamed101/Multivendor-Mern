@@ -1,4 +1,5 @@
-import cors from "cors";
+import cors, { CorsOptions } from "cors";
+import dotenv from "dotenv";
 import express, { Application, NextFunction, Request, Response } from "express";
 import { notFound } from "./middlewares/notFound";
 import router from "./routes";
@@ -7,23 +8,47 @@ import { template } from "./rootTemplate";
 import { PaymentController } from "./modules/payment/payment.controller";
 import globalErrorHandler from "./middlewares/globalErrorHandler";
 
+dotenv.config();
+
 const app: Application = express();
 
+const envAllowedOrigins = (process.env.CORS_ORIGINS || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:3002",
+  "http://127.0.0.1:3000",
+  "http://127.0.0.1:3001",
+  "http://127.0.0.1:3002",
+  "http://10.10.11.118:3001",
+  "http://10.10.11.118:3040",
+  "https://multivendor-mern.vercel.app",
+  "https://manage.sleeknit.com",
+  "https://sleeknit.com",
+  ...envAllowedOrigins,
+];
+
+const corsOptions: CorsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+      return;
+    }
+
+    callback(new Error(`CORS blocked origin: ${origin}`));
+  },
+  credentials: true,
+};
+
 // ✅ CORS FIRST
-app.use(
-  cors({
-    origin: [
-      "http://10.10.11.118:3001",
-      "http://10.10.11.118:3040",
-      "https://manage.sleeknit.com",
-      "https://sleeknit.com"
-    ],
-    credentials: true,
-  })
-);
+app.use(cors(corsOptions));
 
 // ✅ Handle preflight
-app.options("*", cors());
+app.options("*", cors(corsOptions));
 
 // Logs & parsers
 app.use(logHttpRequests);
